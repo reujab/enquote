@@ -10,15 +10,10 @@
 //!     assert_eq!(enquote::unescape("\\n", None).unwrap(), "\n");
 //! }
 //! ```
-#[derive(Debug, PartialEq)]
-pub enum Error {
-    NotEnoughChars,
-    UnrecognizedQuote,
-    UnexpectedEOF,
-    IllegalChar,
-    UnrecognizedEscape,
-    InvalidUnicode,
-}
+
+mod error;
+
+use error::Error;
 
 /// Enquotes `s` with `quote`.
 pub fn enquote(quote: char, s: &str) -> String {
