@@ -6,8 +6,8 @@ This Rust library quotes, unquotes, and unescapes strings.
 extern crate enquote;
 
 fn main() {
-	assert_eq!(enquote::enquote('\'', "foo'bar"), "'foo\\'bar'");
-	assert_eq!(enquote::unquote("'foo\\'bar\\n'"), "foo'bar\n");
-	assert_eq!(enquote::unescape("\\n", None), "\n");
+    assert_eq!(enquote::enquote('\'', "foo'bar"), "'foo\\'bar'");
+    assert_eq!(enquote::unquote("'foo\\'bar\\n'").unwrap(), "foo'bar\n");
+    assert_eq!(enquote::unescape("\\n", None).unwrap(), "\n");
 }
 ```

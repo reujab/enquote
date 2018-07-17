@@ -1,3 +1,15 @@
+//! This Rust library quotes, unquotes, and unescapes strings.
+//!
+//! # Examples
+//! ```
+//! extern crate enquote;
+//!
+//! fn main() {
+//!     assert_eq!(enquote::enquote('\'', "foo'bar"), "'foo\\'bar'");
+//!     assert_eq!(enquote::unquote("'foo\\'bar\\n'").unwrap(), "foo'bar\n");
+//!     assert_eq!(enquote::unescape("\\n", None).unwrap(), "\n");
+//! }
+//! ```
 #[derive(Debug, PartialEq)]
 pub enum Error {
     NotEnoughChars,
