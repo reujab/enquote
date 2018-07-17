@@ -13,7 +13,7 @@
 
 mod error;
 
-use error::Error;
+pub use error::Error;
 
 /// Enquotes `s` with `quote`.
 pub fn enquote(quote: char, s: &str) -> String {
