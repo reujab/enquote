@@ -1,31 +1,17 @@
-use std::error;
-use std::fmt;
+use thiserror::Error;
 
-#[derive(Debug, PartialEq)]
+#[derive(Error, Debug, PartialEq)]
 pub enum Error {
+    #[error("not enough chars")]
     NotEnoughChars,
+    #[error("unrecognized quote character")]
     UnrecognizedQuote,
+    #[error("unexpected eof")]
     UnexpectedEOF,
+    #[error("illegal character")]
     IllegalChar,
+    #[error("unrecognized escape sequence")]
     UnrecognizedEscape,
+    #[error("invalid unicode code point")]
     InvalidUnicode,
-}
-
-impl fmt::Display for Error {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-impl error::Error for Error {
-    fn description(&self) -> &str {
-        match self {
-            Error::NotEnoughChars => "not enough chars",
-            Error::UnrecognizedQuote => "unrecognized quote character",
-            Error::UnexpectedEOF => "unexpected eof",
-            Error::IllegalChar => "illegal character",
-            Error::UnrecognizedEscape => "unrecognized escape sequence",
-            Error::InvalidUnicode => "invalid unicode code point",
-        }
-    }
 }

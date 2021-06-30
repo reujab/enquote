@@ -79,7 +79,7 @@ pub fn unescape(s: &str, illegal: Option<char>) -> Result<String, Error> {
                         't' => '\t',
                         'v' => '\x0b',
                         // octal
-                        '0'...'9' => {
+                        '0'..='9' => {
                             let octal = c.to_string() + &take(&mut chars, 2);
                             u8::from_str_radix(&octal, 8).map_err(|_| Error::UnrecognizedEscape)?
                                 as char
