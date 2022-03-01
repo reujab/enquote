@@ -70,7 +70,7 @@ pub fn unescape(s: &str, illegal: Option<char>) -> Result<String, Error> {
                 '\\' => match chars.next() {
                     None => return Err(Error::UnexpectedEOF),
                     Some(c) => match c {
-                        _ if c == '\\' || c == '"' || c == '\'' || c == '`' => c,
+                        '\\' | '"' | '\'' | '`' => c,
                         'a' => '\x07',
                         'b' => '\x08',
                         'f' => '\x0c',
@@ -116,7 +116,7 @@ fn take<I: Iterator<Item = char>>(iterator: &mut I, n: usize) -> String {
 
 fn decode_unicode(code_point: &str) -> Result<char, Error> {
     match u32::from_str_radix(code_point, 16) {
-        Err(_) => return Err(Error::UnrecognizedEscape),
+        Err(_) => Err(Error::UnrecognizedEscape),
         Ok(n) => std::char::from_u32(n).ok_or(Error::InvalidUnicode),
     }
 }
